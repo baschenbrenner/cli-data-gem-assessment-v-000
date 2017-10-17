@@ -97,8 +97,8 @@ TEAMS_ARRAY = [
 
   def offensive_game_leaders(abbreviation)
     find_game_page_based_on_one_team(abbreviation)
-    array_of_game_url=Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
     
+
     puts "#{abbreviation}"
   end
 
@@ -107,7 +107,11 @@ TEAMS_ARRAY = [
   end
 
   def find_game_page_based_on_one_team(abbreviation)
-    puts "#{abbreviated_name}"
+    array_of_game_url=Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
+    TEAMS_ARRAY.each do |team|
+    if team.values[0][:team_abbreviation] == abbreviation
+        puts "#{team.values[0][:full_name].split.last.downcase}"
+    end
   end
 
 
