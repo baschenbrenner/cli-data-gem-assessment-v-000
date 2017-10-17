@@ -40,7 +40,7 @@ TEAMS_ARRAY = [
       if choice.to_i == 1
         puts "how to pick a name"
 
-        single_game("NE")
+        single_game("Cards")
       elsif choice.to_i == 2
         all_games
       elsif choice.to_i == 3
@@ -65,7 +65,8 @@ TEAMS_ARRAY = [
 
   def single_game(name)
     nfl_team_abbreviation=find_official_abbreviation(name)
-    array_of_opponent=find_game_based_on_one_team(name)
+    all_games=Scraper.scrape_scores_page("http://www.nfl.com/scores")
+    
     new_game=NFL::Game.new(array_of_opponent[0],array_of_opponent[1])
     new_game.possession
     new_game.last_play
@@ -94,7 +95,7 @@ TEAMS_ARRAY = [
   end
 
   def find_game_based_on_one_team(abbreviated_name)
-    opponent_array=["New England", "New York"]
+    puts "#{abbreviated_name}"
   end
 
 
