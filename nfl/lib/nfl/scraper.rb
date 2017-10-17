@@ -2,7 +2,7 @@ class Scraper
 
 
 
-  def self.scrape_scores_page(index_url)
+  def self.scrape_scores_page_return_list_of_games_and_scores(index_url)
 
      raw=Nokogiri::HTML(open(index_url))
      array_of_games=raw.css('div.new-score-box')
@@ -21,13 +21,21 @@ class Scraper
        #last_play
      }
      list_of_games_w_home_team_first
+  end
 
 
+  def self.scrape_scores_page_return_list_of_game_url(index_url)
+      raw=Nokogiri::HTML(open(index_url))
+      array_of_games=raw.css('div.new-score-box')
+      array_of_game_url=[]
+      i=0
+      while i<array_of_games.length
+      array_of_game_url<<"http://www.nfl.com"+array_of_games[i].css('div.game-center-area').css('a')[0].attributes["href"].value
+      end
+      array_of_game_url
+    end
 
 
-
-
-   end
 
 
 end

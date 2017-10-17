@@ -73,7 +73,7 @@ TEAMS_ARRAY = [
   def single_game(name)
     nfl_team_abbreviation=find_official_abbreviation(name)
 
-    all_games=Scraper.scrape_scores_page("http://www.nfl.com/scores")
+    all_games=Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
 
     single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
     puts "The current score is #{single_game[0]}"
@@ -87,7 +87,7 @@ TEAMS_ARRAY = [
   end
 
   def all_games
-    all_games=Scraper.scrape_scores_page("http://www.nfl.com/scores")
+    all_games=Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
     i=0
     while i<all_games.length
       puts "#{all_games[i]}"
@@ -96,6 +96,8 @@ TEAMS_ARRAY = [
   end
 
   def offensive_game_leaders(abbreviation)
+    find_game_page_based_on_one_team(abbreviation)
+    Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
     puts "#{abbreviation}"
   end
 
@@ -103,7 +105,7 @@ TEAMS_ARRAY = [
     puts "Sayonara!"
   end
 
-  def find_game_based_on_one_team(abbreviated_name)
+  def find_game_page_based_on_one_team(abbreviation)
     puts "#{abbreviated_name}"
   end
 
