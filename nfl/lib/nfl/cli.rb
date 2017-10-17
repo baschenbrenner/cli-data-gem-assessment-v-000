@@ -1,11 +1,22 @@
 #our CLI controller
 class NFL::CLI
 
+TEAMS_ARRAY = [
+          {:ari=>
+    {:team_abbreviation => "ARI",
+       :full_name => "Arizona Cardinals",
+       :array_of_searchable_terms_in_lowercase => ["ari","arizona","arizona cardinals","arizona cards","cards"]}},
+          {:mia=>
+    {:team_abbreviation => "MIA",
+        :full_name => "Miami Dolphins",
+        :array_of_searchable_terms_in_lowercase => ["mia","miami","miami dolphins","miami fins","fins","phins"]}}
+      ]
 
+]
   def call
-    welcome
-    choose
-    goodbye
+    welcome #basic welcome
+    choose  #gives the structured menu with choices
+    goodbye #goodbye method
   end
 
   def welcome
@@ -19,7 +30,9 @@ class NFL::CLI
     choice = gets
     while choice != 3
       if choice.to_i == 1
-      single_game
+        puts "how to pick a name"
+
+        single_game("NE")
       elsif choice.to_i == 2
         all_games
       elsif choice.to_i == 3
@@ -29,6 +42,7 @@ class NFL::CLI
         choose
       end
     puts "Would you like to see more?"
+    puts "Enter 1 for single and 2 for all scores or enter 3 for exit"
     choice = gets
     end
 
@@ -62,6 +76,10 @@ class NFL::CLI
 
   def goodbye
     puts "Sayonara!"
+  end
+
+  def find_game_based_on_one_team(abbreviated_name)
+    opponent_array=["New England", "New York"]
   end
 
 end

@@ -16,7 +16,7 @@ attr_accessor :team1, :team2, :score_of_team1, :score_of_team2
     @score_of_team2 = find_score_of_away_team(self)
   end
 
-    
+
   def possession
     puts "#{self.team1} has possession of the ball"
   end
@@ -26,9 +26,3 @@ attr_accessor :team1, :team2, :score_of_team1, :score_of_team2
   end
 
 end
-
-
-
-new_game=NFL::Game.new(name)
-new_game.possession
-new_game.last_play

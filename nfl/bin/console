@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
+<<<<<<< HEAD
 
+=======
+require "nfl"
+>>>>>>> 61825d636b7c6fb5f6ec9d06781004590b5f88a5
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -11,4 +15,8 @@ require "bundler/setup"
 # Pry.start
 
 require "irb"
+<<<<<<< HEAD
 IRB.start('.nfl')
+=======
+IRB.start(__FILE__)
+>>>>>>> 61825d636b7c6fb5f6ec9d06781004590b5f88a5
