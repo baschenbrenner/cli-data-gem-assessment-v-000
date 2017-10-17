@@ -12,7 +12,7 @@ TEAMS_ARRAY = [
         :array_of_searchable_terms_in_lowercase => ["mia","miami","miami dolphins","miami fins","fins","phins"]}}
       ]
 
-]
+
   def call
     welcome #basic welcome
     choose  #gives the structured menu with choices
