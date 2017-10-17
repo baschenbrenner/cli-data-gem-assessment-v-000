@@ -1,6 +1,7 @@
 class Scraper
 
 
+
   def self.scrape_scores_page(index_url)
 
      raw=Nokogiri::HTML(open(index_url))

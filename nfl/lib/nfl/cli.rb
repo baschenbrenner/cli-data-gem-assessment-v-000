@@ -77,7 +77,11 @@ TEAMS_ARRAY = [
 
     single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
     puts "The current score is #{single_game[0]}"
-
+    puts "Would you like to see the offensive game leaders? Enter 1 for yes and anything else to return to the main menu."
+    response = gets
+    if response.to_i ==1
+      offensive_game_leaders(nfl_team_abbreviation)
+    end
     #new_game.possession
     #new_game.last_play
   end
@@ -91,13 +95,8 @@ TEAMS_ARRAY = [
     end
   end
 
-  def passing_leader
-  end
-
-  def rushing_leader
-  end
-
-  def receiving_leader
+  def offensive_game_leaders(abbreviation)
+    puts "#{abbreviation}"
   end
 
   def goodbye
