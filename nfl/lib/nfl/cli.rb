@@ -12,6 +12,14 @@ TEAMS_ARRAY = [
         :array_of_searchable_terms_in_lowercase => ["mia","miami","miami dolphins","miami fins","fins","phins"]}}
       ]
 
+      def find_official_abbreviation(input)
+        TEAMS_ARRAY.each do |team_hash|
+          if team_hash.values[0][:array_of_searchable_terms_in_lowercase].include?(input.downcase)
+            return team_hash.values[0][:team_abbreviation]
+          end
+        end
+
+      end
 
   def call
     welcome #basic welcome
@@ -56,6 +64,7 @@ TEAMS_ARRAY = [
   end
 
   def single_game(name)
+    nfl_team_abbreviation=find_official_abbreviation(name)
     array_of_opponent=find_game_based_on_one_team(name)
     new_game=NFL::Game.new(array_of_opponent[0],array_of_opponent[1])
     new_game.possession
@@ -63,6 +72,12 @@ TEAMS_ARRAY = [
   end
 
   def all_games
+    all_games=Scraper.scrape_scores_page("http://www.nfl.com/scores")
+    i=0
+    while i<all_games.length
+      puts "#{all_games[i]}"
+      i +=1
+    end
   end
 
   def passing_leader
@@ -81,5 +96,6 @@ TEAMS_ARRAY = [
   def find_game_based_on_one_team(abbreviated_name)
     opponent_array=["New England", "New York"]
   end
+
 
 end

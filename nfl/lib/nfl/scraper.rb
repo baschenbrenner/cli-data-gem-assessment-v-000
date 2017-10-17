@@ -2,8 +2,8 @@ class Scraper
 
 
   def self.scrape_scores_page(index_url)
-     html = File.read(index_url)
-     raw=Nokogiri::HTML(html)
+
+     raw=Nokogiri::HTML(open(index_url))
      array_of_games=raw.css('div.new-score-box')
      list_of_games_w_home_team_first=[]
      array_of_games.each {|games|
