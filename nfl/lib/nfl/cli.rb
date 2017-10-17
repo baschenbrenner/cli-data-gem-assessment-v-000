@@ -96,10 +96,10 @@ TEAMS_ARRAY = [
   end
 
   def offensive_game_leaders(abbreviation)
-    find_game_page_based_on_one_team(abbreviation)
-    
+    Scraper.scrape_offensive_leaders(find_game_page_based_on_one_team(abbreviation))
 
-    puts "#{abbreviation}"
+
+    
   end
 
   def goodbye
@@ -108,10 +108,13 @@ TEAMS_ARRAY = [
 
   def find_game_page_based_on_one_team(abbreviation)
     array_of_game_url=Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
+    lowercase_search_name ="donkeys"
     TEAMS_ARRAY.each do |team|
-    if team.values[0][:team_abbreviation] == abbreviation
-        puts "#{team.values[0][:full_name].split.last.downcase}"
-    end
+        if team.values[0][:team_abbreviation] == abbreviation
+            lowercase_search_name=team.values[0][:full_name].split.last.downcase
+        end
+      end
+    array_of_game_url.select{|game_url| game_url.include?(lowercase_search_name)}.first
   end
 
 
