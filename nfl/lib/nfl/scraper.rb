@@ -31,11 +31,13 @@ class Scraper
       i=0
       while i<array_of_games.length
       array_of_game_url<<"http://www.nfl.com"+array_of_games[i].css('div.game-center-area').css('a')[0].attributes["href"].value
+      i+=1
       end
       array_of_game_url
     end
 
-
-
+    def self.scrape_offensive_leaders(game_center_url)
+      raw=Nokogiri::HTML(open(index_url))
+    end
 
 end

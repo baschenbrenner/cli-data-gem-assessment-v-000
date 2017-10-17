@@ -97,7 +97,8 @@ TEAMS_ARRAY = [
 
   def offensive_game_leaders(abbreviation)
     find_game_page_based_on_one_team(abbreviation)
-    Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
+    array_of_game_url=Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
+    
     puts "#{abbreviation}"
   end
 
