@@ -13,6 +13,7 @@ TEAMS_ARRAY = [
       ]
 
       def find_official_abbreviation(input)
+        input=input.gsub("\n","")
         TEAMS_ARRAY.each do |team_hash|
           if team_hash.values[0][:array_of_searchable_terms_in_lowercase].include?(input.downcase)
             return team_hash.values[0][:team_abbreviation]
@@ -38,9 +39,15 @@ TEAMS_ARRAY = [
     choice = gets
     while choice != 3
       if choice.to_i == 1
-        puts "OK! "
+        puts "OK! Which team are you interested in? You can enter:"
+        puts "Full team name (e.g. Arizona cardinals)"
+        puts "Abbreviation (e.g. pats)"
+        puts "NFL Abbreviation (e.g. NYJ)"
+        puts "City (e.g. Philadelphia)"
+        puts "The input is not case sensitive"
+        input = gets
 
-        single_game("Cards")
+        single_game(input)
       elsif choice.to_i == 2
         all_games
       elsif choice.to_i == 3
@@ -65,8 +72,9 @@ TEAMS_ARRAY = [
 
   def single_game(name)
     nfl_team_abbreviation=find_official_abbreviation(name)
+
     all_games=Scraper.scrape_scores_page("http://www.nfl.com/scores")
-    binding.pry
+
     single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
     puts "The current score is #{single_game[0]}"
 
