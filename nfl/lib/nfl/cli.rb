@@ -41,7 +41,11 @@ class NFL::CLI
     #option to repeat, see more
   end
 
-  def single_game
+  def single_game(name)
+    array_of_opponent=find_game_based_on_one_team(name)
+    new_game=NFL::Game.new(array_of_opponent[0],array_of_opponent[1])
+    new_game.possession
+    new_game.last_play
   end
 
   def all_games
