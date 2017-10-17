@@ -1,6 +1,4 @@
-require "nfl/version"
-require_relative '../config/environment'
+require_relative "./nfl/version.rb"
+require_relative "./nfl/cli.rb"
 
-module Nfl
-  # Your code goes here...
-end
+require_relative '../config/environment'
