@@ -38,7 +38,7 @@ TEAMS_ARRAY = [
     choice = gets
     while choice != 3
       if choice.to_i == 1
-        puts "how to pick a name"
+        puts "OK! "
 
         single_game("Cards")
       elsif choice.to_i == 2
@@ -66,10 +66,12 @@ TEAMS_ARRAY = [
   def single_game(name)
     nfl_team_abbreviation=find_official_abbreviation(name)
     all_games=Scraper.scrape_scores_page("http://www.nfl.com/scores")
-    
-    new_game=NFL::Game.new(array_of_opponent[0],array_of_opponent[1])
-    new_game.possession
-    new_game.last_play
+    binding.pry
+    single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
+    puts "The current score is #{single_game[0]}"
+
+    #new_game.possession
+    #new_game.last_play
   end
 
   def all_games
