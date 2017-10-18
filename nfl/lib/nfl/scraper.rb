@@ -36,8 +36,8 @@ class Scraper
       array_of_game_url
     end
 
-    def self.scrape_offensive_leaders(game_center_url)
-      raw=Nokogiri::HTML(open(index_url))
+    def self.scrape_offensive_leaders
+      raw=Nokogiri::HTML(open("http://www.espn.com/nfl/scoreboard"))
     end
 
 end
