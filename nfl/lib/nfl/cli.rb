@@ -12,15 +12,7 @@ TEAMS_ARRAY = [
         :array_of_searchable_terms_in_lowercase => ["mia","miami","miami dolphins","miami fins","fins","phins"]}}
       ]
 
-      def find_official_abbreviation(input)
-        input=input.gsub("\n","")
-        TEAMS_ARRAY.each do |team_hash|
-          if team_hash.values[0][:array_of_searchable_terms_in_lowercase].include?(input.downcase)
-            return team_hash.values[0][:team_abbreviation]
-          end
-        end
 
-      end
 
   def call
     welcome #basic welcome
@@ -47,7 +39,7 @@ TEAMS_ARRAY = [
         puts "The input is not case sensitive"
         input = gets
 
-        single_game(input)
+        NFL::Game.single_game(input)
       elsif choice.to_i == 2
         all_games
       elsif choice.to_i == 3
@@ -70,36 +62,15 @@ TEAMS_ARRAY = [
     #option to repeat, see more
   end
 
-  def single_game(name)
-    nfl_team_abbreviation=find_official_abbreviation(name)
 
-    all_games=Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
 
-    single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
-    puts "The current score is #{single_game[0]}"
-    puts "Would you like to see the offensive game leaders? Enter 1 for yes and anything else to return to the main menu."
-    response = gets
-    if response.to_i ==1
-      offensive_game_leaders(nfl_team_abbreviation)
-    end
-    #new_game.possession
-    #new_game.last_play
-  end
-
-  def all_games
-    all_games=Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
-    i=0
-    while i<all_games.length
-      puts "#{all_games[i]}"
-      i +=1
-    end
-  end
+  
 
   def offensive_game_leaders(abbreviation)
     Scraper.scrape_offensive_leaders(find_game_page_based_on_one_team(abbreviation))
 
 
-    
+
   end
 
   def goodbye
