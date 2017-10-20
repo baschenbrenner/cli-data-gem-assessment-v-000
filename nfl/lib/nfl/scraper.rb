@@ -1,4 +1,4 @@
-class Scraper
+class NFL::Scraper
 
 
 
@@ -37,7 +37,25 @@ class Scraper
     end
 
     def self.scrape_offensive_leaders
-      raw=Nokogiri::HTML(open("http://www.espn.com/nfl/scoreboard"))
+      raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
+      binding.pry
     end
 
+    def self.scrape_all_games_for_week
+      raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
+      year_and_nfl_week = raw.css('h2').first.children.text
+      unfiltered_array_of_games=raw.css('div.game_summary')
+      game_dates_or_days = unfiltered_array_of_games.collect {|x| x.css('tr.date').first.children.text}
+      visiting_teams_names = unfiltered_array_of_games.collect {|x| x.css('a').first.children.text}
+      home_teams_names = unfiltered_array_of_games.collect{|x| x.css('a')[2].children.text}
+      array_of_games = []
+      i=0
+      while i<game_dates_or_days.length
+      new_game= NFL::Game.new(visiting_teams_names[i],home_teams_names[i])
+      array_of_games << new_game
+      i +=1
+      end
+      return array_of_games
+
+    end
 end

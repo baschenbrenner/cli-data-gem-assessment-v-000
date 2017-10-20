@@ -46,4 +46,22 @@ license
 
   so since all games has code from single game i will work on that first
   in a method call game_score
-  
+
+
+  Maybe there is this thing called a week
+  So you have
+  CLI-
+    week
+      -games
+        -TEAMS_ARRAY - which i think needs to be an array and not team objects because these exist before the games
+
+  what if it was
+  CLI -
+    Week -
+      Games -
+        Teams -
+          
+
+Games have two Teams
+Week has many games
+week has many teams through games

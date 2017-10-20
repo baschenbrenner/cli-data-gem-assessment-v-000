@@ -1,18 +1,6 @@
 #our CLI controller
 class NFL::CLI
 
-TEAMS_ARRAY = [
-          {:ari=>
-    {:team_abbreviation => "ARI",
-       :full_name => "Arizona Cardinals",
-       :array_of_searchable_terms_in_lowercase => ["ari","arizona","arizona cardinals","arizona cards","cards"]}},
-          {:mia=>
-    {:team_abbreviation => "MIA",
-        :full_name => "Miami Dolphins",
-        :array_of_searchable_terms_in_lowercase => ["mia","miami","miami dolphins","miami fins","fins","phins"]}}
-      ]
-
-
 
   def call
     welcome #basic welcome
@@ -21,8 +9,14 @@ TEAMS_ARRAY = [
   end
 
   def welcome
-    puts "Welcome to NFL ScoreFinder. We can print scores of individual games or of all games."
-    puts "Plus you will have an option to dive deeper into individual games to see passing, rushing and receiving leaders!"
+    puts "Welcome to NFL ScoreFinder. Here are the games happening this week."
+    new_array=NFL::Scraper.scrape_all_games_for_week
+    i=0
+    while i<new_array.length
+
+    puts "#{i+1}. #{new_array[i].awayteam} vs. #{new_array[i].hometeam}"
+    i+=1
+    end
   end
 
   def choose
@@ -39,7 +33,8 @@ TEAMS_ARRAY = [
         puts "The input is not case sensitive"
         input = gets
 
-        NFL::Game.single_game(input)
+        new_game=NFL::Game.new(input)
+        new_game.single_game
       elsif choice.to_i == 2
         all_games
       elsif choice.to_i == 3
@@ -64,7 +59,7 @@ TEAMS_ARRAY = [
 
 
 
-  
+
 
   def offensive_game_leaders(abbreviation)
     Scraper.scrape_offensive_leaders(find_game_page_based_on_one_team(abbreviation))

@@ -1,6 +1,14 @@
 class NFL::Game
-attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam
+attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
   #this object is for games which exist between two teams - the teams are recorded as an array of 32 hashes
+
+  @@games = []
+    def initialize(name_of_team1,name_of_team2)
+      @awayteam = name_of_team1
+      @hometeam = name_of_team2
+
+      @@games << self
+    end
 
     def create_game(official_team_abbreviation) #creates a new instance of a game with one teams official abbreviation (e.g. NE or NYJ)
 
@@ -16,10 +24,10 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam
 
     end
 
-    def single_game(name)
-      nfl_team_abbreviation=find_official_abbreviation(name)
+    def single_game
 
-      all_games=Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
+
+
 
       single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
       puts "The current score is #{single_game[0]}"
