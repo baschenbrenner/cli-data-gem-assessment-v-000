@@ -1,11 +1,12 @@
 class NFL::Game
-attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
+attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url, :game_played_on
   #this object is for games which exist between two teams - the teams are recorded as an array of 32 hashes
 
   @@games = []
-    def initialize(name_of_team1,name_of_team2)
+    def initialize(name_of_team1,name_of_team2, game_date_or_day = "Sunday")
       @awayteam = name_of_team1
       @hometeam = name_of_team2
+      @game_played_on = game_date_or_day
 
       @@games << self
     end
@@ -49,35 +50,12 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
       end
     end
 
-    def update_current_games
+    def update_current_game(game)
+      NFL::Scraper.udpate_game_scores
+
     end
 
 
-  TEAMS_ARRAY = [
-            {:ari=>
-      {:team_abbreviation => "ARI",
-         :full_name => "Arizona Cardinals",
-         :array_of_searchable_terms_in_lowercase => ["ari","arizona","arizona cardinals","arizona cards","cards"]}},
-
-         {:atl=>
-         {:team_abbreviation => "ATL",
-         :full_name => "Atlanta Falcons",
-         :array_of_searchable_terms_in_lowercase => ["atl","atlanta","atlanta falcons","falcons","falcs"]}},
-
-         {:bal=>
-           {:team_abbreviation => "BAL",
-             :full_name => "Baltimore Ravens",
-             :array_of_searchable_terms_in_lowercase => ["bal","baltimore","bmore","baltimore ravens","ravens"]}},
-
-
-
-
-            {:mia=>
-      {:team_abbreviation => "MIA",
-          :full_name => "Miami Dolphins",
-          :array_of_searchable_terms_in_lowercase => ["mia","miami","miami dolphins","miami fins","fins","phins"]}}
-
-        ]
 
 
 end

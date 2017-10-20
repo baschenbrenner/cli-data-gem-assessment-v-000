@@ -14,7 +14,7 @@ class NFL::CLI
     i=0
     while i<new_array.length
 
-    puts "#{i+1}. #{new_array[i].awayteam} vs. #{new_array[i].hometeam}"
+    puts "#{i+1}. #{new_array[i].awayteam} vs. #{new_array[i].hometeam} played on #{new_array.game_played_on}"
     i+=1
     end
   end

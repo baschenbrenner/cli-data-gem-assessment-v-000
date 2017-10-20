@@ -51,11 +51,16 @@ class NFL::Scraper
       array_of_games = []
       i=0
       while i<game_dates_or_days.length
-      new_game= NFL::Game.new(visiting_teams_names[i],home_teams_names[i])
+      new_game= NFL::Game.new(visiting_teams_names[i],home_teams_names[i],game_dates_or_days[i])
       array_of_games << new_game
       i +=1
       end
       return array_of_games
 
     end
+
+    def self.update_game_scores
+      raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
+      year_and_nfl_week = raw.css('h2').first.children.text
+      unfiltered_array_of_games=raw.css('div.game_summary')
 end
