@@ -15,7 +15,8 @@ class NFL::Scraper
 
        hometeamscore = games.css('div.home-team').css('p.total-score').text
        awayteamscore = games.css('div.away-team').css('p.total-score').text
-       list_of_games_w_home_team_first << "#{hometeam} #{hometeamscore} vs. #{awayteam} #{awayteamscore}"
+       timeleft = games.css('span.time-left').text
+       list_of_games_w_home_team_first << "#{hometeam} #{hometeamscore} vs. #{awayteam} #{awayteamscore} -- #{timeleft} "
        #gamestatus
        #possession
        #last_play
@@ -30,6 +31,7 @@ class NFL::Scraper
       array_of_game_url=[]
       i=0
       while i<array_of_games.length
+
       array_of_game_url<<"http://www.nfl.com"+array_of_games[i].css('div.game-center-area').css('a')[0].attributes["href"].value
       i+=1
       end
@@ -38,7 +40,7 @@ class NFL::Scraper
 
     def self.scrape_offensive_leaders
       raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
-      binding.pry
+
     end
 
     def self.scrape_all_games_for_week
@@ -61,6 +63,8 @@ class NFL::Scraper
 
     def self.update_game_scores
       raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
-      year_and_nfl_week = raw.css('h2').first.children.text
       unfiltered_array_of_games=raw.css('div.game_summary')
+      #need to create a loop - the scraper needs to get the score for games which have already been instantiated passing the information back into the game instance
+    end
+
 end

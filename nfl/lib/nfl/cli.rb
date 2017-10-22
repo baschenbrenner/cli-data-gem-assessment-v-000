@@ -11,10 +11,11 @@ class NFL::CLI
   def welcome
     puts "Welcome to NFL ScoreFinder. Here are the games happening this week."
     new_array=NFL::Scraper.scrape_all_games_for_week
+    
     i=0
     while i<new_array.length
 
-    puts "#{i+1}. #{new_array[i].awayteam} vs. #{new_array[i].hometeam} played on #{new_array.game_played_on}"
+    puts "#{i+1}. #{new_array[i].awayteam} vs. #{new_array[i].hometeam} played on #{new_array[i].game_played_on}"
     i+=1
     end
   end
@@ -36,7 +37,7 @@ class NFL::CLI
         new_game=NFL::Game.new(input)
         new_game.single_game
       elsif choice.to_i == 2
-        all_games
+        NFL::Game.all_games
       elsif choice.to_i == 3
         return "Have a great day!"
       else

@@ -41,8 +41,8 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
       #new_game.last_play
     end
 
-    def all_games
-      all_games=Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
+    def self.all_games
+      all_games=NFL::Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
       i=0
       while i<all_games.length
         puts "#{all_games[i]}"
