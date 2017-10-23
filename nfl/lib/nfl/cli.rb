@@ -15,7 +15,7 @@ class NFL::CLI
     i=0
     while i<new_array.length
 
-    puts "#{i+1}. #{new_array[i].awayteam} vs. #{new_array[i].hometeam} played on #{new_array[i].game_played_on}"
+    puts "#{i+1}. #{new_array[i].awayteam.city} vs. #{new_array[i].hometeam.city} played on #{new_array[i].game_played_on}"
     i+=1
     end
   end
@@ -30,7 +30,17 @@ class NFL::CLI
         puts "For example for the Arizona cardinals type in 'cardinals' or 'Cardinals'"
         input = gets
         array_of_games=NFL::Game.review_games
-        binding.pry
+        input = input.gsub("\n","").downcase
+        matching_game=[]
+        array_of_games.each {|game|
+        if game.awayteam.mascot.downcase == input
+          matching_game<<game
+        end
+        if game.hometeam.mascot.downcase == input
+          matching_game<<game
+        end
+        }
+        puts "You are interested in #{matching_game[0].awayteam.mascot} vs. #{matching_game[0].hometeam.mascot}!"
 
       elsif choice.to_i == 2
         NFL::Game.all_games
@@ -47,12 +57,6 @@ class NFL::CLI
 
   end
 
-  def deeper_dive
-    passing_leader
-    rushing_leader
-    receiving_leader
-    #option to repeat, see more
-  end
 
 
 
