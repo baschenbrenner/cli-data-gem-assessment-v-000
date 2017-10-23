@@ -43,10 +43,13 @@ class NFL::CLI
         puts "You are interested in #{matching_game[0].awayteam.mascot} vs. #{matching_game[0].hometeam.mascot}!"
         puts "Here are the offensive leaders from that game:"
         NFL::Scraper.scrape_offensive_leaders(matching_game[0])
+
       elsif choice.to_i == 2
         NFL::Game.all_games
+
       elsif choice.to_i == 3
         return "Have a great day!"
+        
       else
         puts "That is an invalid choice, choose again."
         choose

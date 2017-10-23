@@ -69,9 +69,21 @@ class NFL::Scraper
     def self.update_game_scores
       raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
       unfiltered_array_of_games=raw.css('div.game_summary')
-      unfiltered_array_of_games.each {|game| #extract home and away team scores and add them to the matching game from NFL::Game.review_games array
-      }
-      #need to create a loop - the scraper needs to get the score for games which have already been instantiated passing the information back into the game instance
-    end
+      games=NFL::Game.review_games
 
+      unfiltered_array_of_games.each {|game|
+        i=0
+        while i<games.length
+        if game.css('a').first.children.text.split(" ").last == games[i].awayteam.mascot
+        games[i].score_of_awayteam = game.css('td.right')[0].text.to_i
+        games[i].score_of_hometeam = game.css('td.right')[2].text.to_i
+        end
+        i+=1
+        end
+
+
+      }
+
+    end
+    puts "All game scores have been updated"
 end
