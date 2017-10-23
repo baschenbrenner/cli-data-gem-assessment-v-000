@@ -7,6 +7,7 @@ class NFL::Scraper
      raw=Nokogiri::HTML(open(index_url))
      array_of_games=raw.css('div.new-score-box')
      list_of_games_w_home_team_first=[]
+     binding.pry
      array_of_games.each {|games|
 
        hometeam = games.css('div.home-team').css('a').first.attributes["href"].value.split("=")[1]
@@ -40,7 +41,10 @@ class NFL::Scraper
 
     def self.scrape_offensive_leaders
       raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
-
+      puts "Pass Leader is #{raw.css('table.stats')[0].css('a')[0].attributes["title"].value}: #{raw.css('table.stats')[0].css('td')[1].text} with #{raw.css('table.stats')[0].css('td.right')[0].text} yards"
+      puts "Rush Leader is #{raw.css('table.stats')[0].css('a')[1].attributes["title"].value}: #{raw.css('table.stats')[0].css('td')[4].text} with #{raw.css('table.stats')[0].css('td.right')[1].text} yards"
+      puts "Receiving Leader is #{raw.css('table.stats')[0].css('a')[2].attributes["title"].value}: #{raw.css('table.stats')[0].css('td')[4].text} with #{raw.css('table.stats')[0].css('td.right')[1].text} yards"
+      binding.pry
     end
 
     def self.scrape_all_games_for_week
