@@ -4,8 +4,8 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
 
   @@games = []
     def initialize(name_of_team1,name_of_team2, game_date_or_day = "Sunday")
-      @awayteam = name_of_team1
-      @hometeam = name_of_team2
+      @awayteam = NFL::Team(name_of_team1)
+      @hometeam = NFL::Team(name_of_team2)
       @game_played_on = game_date_or_day
 
       @@games << self
