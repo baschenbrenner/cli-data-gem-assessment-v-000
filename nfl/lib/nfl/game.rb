@@ -26,10 +26,6 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
     end
 
     def single_game
-
-
-
-
       single_game=all_games.select{|game| game.include?(nfl_team_abbreviation)}
       puts "The current score is #{single_game[0]}"
       puts "Would you like to see the offensive game leaders? Enter 1 for yes and anything else to return to the main menu."

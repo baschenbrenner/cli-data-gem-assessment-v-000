@@ -42,7 +42,7 @@ class NFL::CLI
         }
         puts "You are interested in #{matching_game[0].awayteam.mascot} vs. #{matching_game[0].hometeam.mascot}!"
         puts "Here are the offensive leaders from that game:"
-        NFL::Scraper.scrape_offensive_leaders
+        NFL::Scraper.scrape_offensive_leaders(matching_game[0])
       elsif choice.to_i == 2
         NFL::Game.all_games
       elsif choice.to_i == 3
@@ -59,31 +59,11 @@ class NFL::CLI
   end
 
 
-
-
-
-
-  def offensive_game_leaders(abbreviation)
-    Scraper.scrape_offensive_leaders(find_game_page_based_on_one_team(abbreviation))
-
-
-
-  end
-
   def goodbye
-    puts "Sayonara!"
+    puts "Thanks for dropping in: come back soon!"
   end
 
-  def find_game_page_based_on_one_team(abbreviation)
-    array_of_game_url=Scraper.scrape_scores_page_return_list_of_game_url("http://www.nfl.com/scores")
-    lowercase_search_name ="donkeys"
-    TEAMS_ARRAY.each do |team|
-        if team.values[0][:team_abbreviation] == abbreviation
-            lowercase_search_name=team.values[0][:full_name].split.last.downcase
-        end
-      end
-    array_of_game_url.select{|game_url| game_url.include?(lowercase_search_name)}.first
-  end
+
 
 
 end
