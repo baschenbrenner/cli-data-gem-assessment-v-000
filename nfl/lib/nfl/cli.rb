@@ -11,7 +11,7 @@ class NFL::CLI
   def welcome
     puts "Welcome to NFL ScoreFinder. Here are the games happening this week."
     new_array=NFL::Scraper.scrape_all_games_for_week
-    
+
     i=0
     while i<new_array.length
 
@@ -26,16 +26,12 @@ class NFL::CLI
     choice = gets
     while choice != 3
       if choice.to_i == 1
-        puts "OK! Which team are you interested in? You can enter:"
-        puts "Full team name (e.g. Arizona cardinals)"
-        puts "Abbreviation (e.g. pats)"
-        puts "NFL Abbreviation (e.g. NYJ)"
-        puts "City (e.g. Philadelphia)"
-        puts "The input is not case sensitive"
+        puts "OK! Which team are you interested in? Type in the team name (not case sensitive):"
+        puts "For example for the Arizona cardinals type in 'cardinals' or 'Cardinals'"
         input = gets
+        array_of_games=NFL::Game.review_games
+        binding.pry
 
-        new_game=NFL::Game.new(input)
-        new_game.single_game
       elsif choice.to_i == 2
         NFL::Game.all_games
       elsif choice.to_i == 3

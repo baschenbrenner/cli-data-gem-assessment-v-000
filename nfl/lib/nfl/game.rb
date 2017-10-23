@@ -55,6 +55,9 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
 
     end
 
+    def self.review_games
+      @@games
+    end
 
 
 
