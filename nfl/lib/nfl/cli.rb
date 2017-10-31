@@ -27,12 +27,12 @@ class NFL::CLI
       if choice.to_i == 1
         puts "OK! Which game are you interested in? Type in the number that corresponds to the game from the above list."
         input = gets
-        
+
         game=NFL::Game.all[input.to_i-1]
-        
+
         puts "You are interested in #{game.awayteam.mascot} vs. #{game.hometeam.mascot}!"
         puts "Here are the offensive leaders from that game:"
-        NFL::Scraper.scrape_offensive_leaders(matching_game[0])
+        NFL::Scraper.scrape_offensive_leaders(game)
 
       elsif choice.to_i == 2
         NFL::Game.all_games
