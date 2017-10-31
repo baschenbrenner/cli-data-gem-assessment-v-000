@@ -25,8 +25,7 @@ class NFL::CLI
     choice = gets
     while choice != 3
       if choice.to_i == 1
-        puts "OK! Which team are you interested in? Type in the team name (not case sensitive):"
-        puts "For example for the Arizona cardinals type in 'cardinals' or 'Cardinals'"
+        puts "OK! Which game are you interested in? Type in the number that corresponds to the game from the above list."
         input = gets
         array_of_games=NFL::Game.review_games
         input = input.gsub("\n","").downcase
