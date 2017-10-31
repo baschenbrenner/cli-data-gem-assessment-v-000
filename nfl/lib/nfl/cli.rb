@@ -12,7 +12,7 @@ class NFL::CLI
   def welcome
     puts "Welcome to NFL ScoreFinder. Here are the games happening this week."
 
-    new_array.each.with_index(1) do |game, i|
+    NFL::Game.all.each.with_index(1) do |game, i|
       puts "#{i}. #{game.awayteam.city} vs. #{game.hometeam.city} played on #{game.game_played_on}"
     end
 
