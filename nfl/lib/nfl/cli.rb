@@ -33,7 +33,7 @@ class NFL::CLI
         puts "You are interested in #{game.awayteam.mascot} vs. #{game.hometeam.mascot}!"
         puts "Here are the offensive leaders from that game:"
         NFL::Scraper.scrape_offensive_leaders(game)
-
+        
       elsif choice.to_i == 2
         NFL::Game.all_games
 
