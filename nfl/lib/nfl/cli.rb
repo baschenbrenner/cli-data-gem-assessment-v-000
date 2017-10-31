@@ -12,6 +12,10 @@ class NFL::CLI
     puts "Welcome to NFL ScoreFinder. Here are the games happening this week."
     new_array=NFL::Scraper.scrape_all_games_for_week
 
+    new_array.each.with_index(1) do |game, i|
+      puts "#{i}. #{game.awayteam.city} vs. #{game.hometeam.city} played on #{game.game_played_on}"
+    end
+    
     i=0
     while i<new_array.length
 
