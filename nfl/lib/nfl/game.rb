@@ -11,6 +11,9 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
       @@games << self
     end
 
+    def self.all
+      @@games
+    end
 
     def self.all_games
       all_games=NFL::Scraper.scrape_scores_page_return_list_of_games_and_scores("http://www.nfl.com/scores")
