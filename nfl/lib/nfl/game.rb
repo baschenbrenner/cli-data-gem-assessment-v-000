@@ -28,8 +28,6 @@ attr_accessor :hometeam, :awayteam, :score_of_hometeam, :score_of_awayteam, :url
       NFL::Scraper.udpate_game_scores
     end
 
-    def self.review_games
-      @@games
-    end
+    
 
 end
