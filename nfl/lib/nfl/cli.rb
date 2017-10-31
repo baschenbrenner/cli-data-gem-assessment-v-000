@@ -27,7 +27,7 @@ class NFL::CLI
       if choice.to_i == 1
         puts "OK! Which game are you interested in? Type in the number that corresponds to the game from the above list."
         input = gets
-        array_of_games=NFL::Game.review_games
+        array_of_games=NFL::Game.all
         input = input.gsub("\n","").downcase
         matching_game=[]
         array_of_games.each {|game|
