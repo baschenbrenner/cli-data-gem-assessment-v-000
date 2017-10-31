@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-#require_relative '../lib/nfl.rb'
-require './lib/nfl.rb'
+require_relative '../lib/nfl.rb'
+require '/home/baschenbrenner/cli-data-gem-assessment-v-000/nfl/lib/nfl.rb'
 NFL::CLI.new.call
