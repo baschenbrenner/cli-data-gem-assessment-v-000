@@ -51,7 +51,9 @@ class NFL::Scraper
     def self.scrape_all_games_for_week
       raw=Nokogiri::HTML(open("https://www.pro-football-reference.com/boxscores"))
       year_and_nfl_week = raw.css('h2').first.children.text
-      unfiltered_array_of_games=raw.css('div.game_summary')
+      raw.css('div.game_summary').each do |game_css|
+        binding.pry
+      end
       game_dates_or_days = unfiltered_array_of_games.collect {|x| x.css('tr.date').first.children.text}
       visiting_teams_names = unfiltered_array_of_games.collect {|x| x.css('a').first.children.text}
       home_teams_names = unfiltered_array_of_games.collect{|x| x.css('a')[2].children.text}
