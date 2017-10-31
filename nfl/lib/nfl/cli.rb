@@ -27,18 +27,10 @@ class NFL::CLI
       if choice.to_i == 1
         puts "OK! Which game are you interested in? Type in the number that corresponds to the game from the above list."
         input = gets
-        array_of_games=NFL::Game.all
-        input = input.gsub("\n","").downcase
-        matching_game=[]
-        array_of_games.each {|game|
-        if game.awayteam.mascot.downcase == input
-          matching_game<<game
-        end
-        if game.hometeam.mascot.downcase == input
-          matching_game<<game
-        end
-        }
-        puts "You are interested in #{matching_game[0].awayteam.mascot} vs. #{matching_game[0].hometeam.mascot}!"
+        
+        game=NFL::Game.all[input.to_i-1]
+        
+        puts "You are interested in #{game.awayteam.mascot} vs. #{game.hometeam.mascot}!"
         puts "Here are the offensive leaders from that game:"
         NFL::Scraper.scrape_offensive_leaders(matching_game[0])
 
