@@ -3,6 +3,7 @@ class NFL::CLI
 
 
   def call
+    NFL::Scraper.scrape_all_games_for_week
     welcome #basic welcome
     choose  #gives the structured menu with choices
     goodbye #goodbye method
@@ -10,7 +11,6 @@ class NFL::CLI
 
   def welcome
     puts "Welcome to NFL ScoreFinder. Here are the games happening this week."
-    new_array=NFL::Scraper.scrape_all_games_for_week
 
     new_array.each.with_index(1) do |game, i|
       puts "#{i}. #{game.awayteam.city} vs. #{game.hometeam.city} played on #{game.game_played_on}"

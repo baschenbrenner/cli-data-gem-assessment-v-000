@@ -59,7 +59,7 @@ class NFL::Scraper
         home_teams_names = game_css.css('a')[2].children.text
         NFL::Game.new(visiting_teams_names,home_teams_names,game_dates_or_days)
       end
-    
+
     end
 
     def self.update_game_scores
