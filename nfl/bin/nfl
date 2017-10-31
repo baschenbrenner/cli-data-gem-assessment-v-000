@@ -2,5 +2,4 @@
 
 require_relative '../lib/nfl.rb'
 
-cli = NFL::CLI.new
-cli.call
+NFL::CLI.new.call
