@@ -15,13 +15,13 @@ class NFL::CLI
     new_array.each.with_index(1) do |game, i|
       puts "#{i}. #{game.awayteam.city} vs. #{game.hometeam.city} played on #{game.game_played_on}"
     end
-    
-    i=0
-    while i<new_array.length
 
-    puts "#{i+1}. #{new_array[i].awayteam.city} vs. #{new_array[i].hometeam.city} played on #{new_array[i].game_played_on}"
-    i+=1
-    end
+    # i=0
+    # while i<new_array.length
+    # 
+    # puts "#{i+1}. #{new_array[i].awayteam.city} vs. #{new_array[i].hometeam.city} played on #{new_array[i].game_played_on}"
+    # i+=1
+    # end
   end
 
   def choose
@@ -53,7 +53,7 @@ class NFL::CLI
 
       elsif choice.to_i == 3
         return "Have a great day!"
-        
+
       else
         puts "That is an invalid choice, choose again."
         choose
